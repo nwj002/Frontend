@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { testApi } from "../../apis/api";
 
 const Homepage = () => {
+
+    //print hello world when page loads(automatica)
+    useEffect(() => {
+        console.log("hello")
+    })
+
+    //trigger test api
+    testApi().then((res) => {
+        console.log(res)// test api is working
+    })
+
     return (
         <div>
-            Image Slider
-            Cards
+            homepage!!!
         </div>
     )
 }
