@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { registerUserApi } from "../../apis/api";
 
 const Register = () => {
 
@@ -75,9 +77,26 @@ const Register = () => {
         if (!isValidated) {
             return
         }
-        console.log(firstName, lastName, email, password, confirmpassword)
-    }
+        //sending request to the api.
 
+        //making json object
+        const data = {
+            "firstName": firstName,
+            "lastName": lastName,
+            "email": email,
+            "password": password
+        }
+
+        registerUserApi(data).then((res) => {
+            //recived data: success message
+            if (res.data.success == false) {
+                toast.error(res.data.message)
+            } else {
+                toast.success(res.data.message)
+            }
+
+        })
+    }
 
     return (
         <>
