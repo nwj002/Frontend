@@ -15,3 +15,6 @@ const api = axios.create({
 export const testApi = () => api.get('/test')
 //register api
 export const registerUserApi = (data) => api.post('/api/user/create', data)  //first data is to store and second data is to send data
+
+// login api
+export const loginUserApi = (data) => api.post('/api/user/login', data)
