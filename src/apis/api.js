@@ -17,4 +17,4 @@ export const testApi = () => api.get('/test')
 export const registerUserApi = (data) => api.post('/api/user/create', data)  //first data is to store and second data is to send data
 
 // login api
-export const loginUserApi = (data) => api.post('/api/user/login', data)
+export const loginUserApi = (data) => api.post('/api/user/login', data) 
