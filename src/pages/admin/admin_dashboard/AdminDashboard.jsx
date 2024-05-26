@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-{ }
+import { toast } from 'react-toastify';
+import { createProductApi } from '../../../apis/api';
+
 const AdminDashboard = () => {
     //usestate
     const [productName, setProductName] = useState('')
@@ -21,7 +23,23 @@ const AdminDashboard = () => {
     //handle sumbit
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(productName, productPrice, productDescription, productCategory, productImage)
+        //make a form data (text, files)
+        const formData = new FormData()
+        formData.append('productName', productName)
+        formData.append('productDescription', productDescription)
+        formData.append('productCategory', productCategory)
+        formData.append('productPrice', productPrice)
+        formData.append('productImage', productImage)
+
+        //make a api call
+        createProductApi(formData).then((res) => {
+            if (res.data.success === false) {
+                toast.error(res.data.message)
+            } else {
+                toast.success(res.data.message)
+            }
+        })
+
     }
 
 
