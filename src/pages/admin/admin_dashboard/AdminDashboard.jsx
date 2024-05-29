@@ -1,8 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { createProductApi } from '../../../apis/api';
+import { createProductApi, getAllProducts } from '../../../apis/api';
 
 const AdminDashboard = () => {
+    //1. state for all fetched products
+    const [products, setProducts] = useState([]) //array 
+
+    //2. call api initially (page load) -set all fetch products to statem (1)
+    useEffect(() => {
+        getAllProducts().then((res) => {
+            //response : res.data.products (all products\)
+            setProducts(res.data.data)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }, [])
+    console.log(products)
+
     //usestate
     const [productName, setProductName] = useState('')
     const [productPrice, setProductPrice] = useState('')
@@ -33,10 +47,22 @@ const AdminDashboard = () => {
 
         //make a api call
         createProductApi(formData).then((res) => {
-            if (res.data.success === false) {
-                toast.error(res.data.message)
-            } else {
+            //for successful api
+            if (res.status === 201) {
                 toast.success(res.data.message)
+            }
+        }).catch((error) => {
+            //for error status code
+            if (error.response) {
+                if (error.response.status === 400) {
+                    toast.warning(error.response.data.message)
+                } else if (error.response.status === 500) {
+                    toast.error(error.response.data.message)
+                } else {
+                    toast.error('Something went wrong')
+                }
+            } else {
+                toast.error('Something went wrong')
             }
         })
 
@@ -135,42 +161,28 @@ const AdminDashboard = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <img
-                                    src="https://i.pinimg.com/736x/78/02/68/78026859287afe4c7add04906c7ecd13.jpg"
-                                    alt="Product"
-                                    className="img-fluid"
-                                    style={{ height: 80, width: 80 }}
-                                />
-                            </td>
-                            <td>Bibadh</td>
-                            <td>$100.00</td>
-                            <td>Kuch bolunga tho bibad ho jayage.</td>
-                            <td>Violence</td>
-                            <td>
-                                <button className="btn btn-primary btn-sm">Edit</button>
-                                <button className="btn btn-danger btn-sm ms-2">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img
-                                    src="https://i.pinimg.com/474x/ca/06/78/ca0678b7a013fda1d61dc9680c1216fb.jpg"
-                                    alt="Product"
-                                    className="img-fluid"
-                                    style={{ height: 80, width: 80 }}
-                                />
-                            </td>
-                            <td>Meow</td>
-                            <td>$15.00</td>
-                            <td>This is a short description of Product 2.</td>
-                            <td>Category B</td>
-                            <td>
-                                <button className="btn btn-primary btn-sm">Edit</button>
-                                <button className="btn btn-danger btn-sm ms-2">Delete</button>
-                            </td>
-                        </tr>
+                        {
+                            products.map((singleProduct) => (
+                                <tr>
+                                    <td>
+                                        <img
+                                            src={`http://localhost:5000/products/${singleProduct.productImage}`}
+                                            alt="Product"
+                                            className="img-fluid"
+                                            style={{ height: 80, width: 80 }}
+                                        />
+                                    </td>
+                                    <td>{singleProduct.productName}</td>
+                                    <td>{singleProduct.productPrice}</td>
+                                    <td>{singleProduct.productDescription}</td>
+                                    <td>{singleProduct.productDescription}</td>
+                                    <td>
+                                        <button className="btn btn-primary btn-sm">Edit</button>
+                                        <button className="btn btn-danger btn-sm ms-2">Delete</button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>
