@@ -24,3 +24,10 @@ export const createProductApi = (data) => api.post('/api/product/create', data)
 
 //get all products api
 export const getAllProducts = () => api.get('/api/product/get_all_products')
+
+//get single products
+export const getSingleProduct = (id) => api.get(`/api/product/get_single_product/${id}`)
+
+//delete product
+export const deleteProduct = (id) => api.delete(`/api/product/delete_product/${id}`)
+

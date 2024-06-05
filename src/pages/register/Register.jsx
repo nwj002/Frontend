@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { registerUserApi } from "../../apis/api";
 
 const Register = () => {
-
-    //login section
 
     //make a usestate for 5 fields
     const [firstName, setFirstName] = useState('')

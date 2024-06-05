@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createProductApi, getAllProducts } from '../../../apis/api';
+import { createProductApi, deleteProduct, getAllProducts } from '../../../apis/api';
 
 const AdminDashboard = () => {
     //1. state for all fetched products
@@ -66,6 +67,24 @@ const AdminDashboard = () => {
             }
         })
 
+    }
+    //handle delete product
+    const handleDelete = (_id) => {
+        const confirmDialog = window.confirm("are you sure want to delet Product?")
+        if (confirmDialog) {
+            //calling api
+            deleteProduct(_id).then((res) => {
+                if (res.status == 201) {
+                    toast.success(res.data.message)
+                    window.location.reload()
+                }
+            }).catch((error) => {
+                if (error.response.status == 500) {
+                    toast.error(error.response.data.message)
+                }
+            })
+
+        }
     }
 
 
@@ -177,8 +196,8 @@ const AdminDashboard = () => {
                                     <td>{singleProduct.productDescription}</td>
                                     <td>{singleProduct.productDescription}</td>
                                     <td>
-                                        <button className="btn btn-primary btn-sm">Edit</button>
-                                        <button className="btn btn-danger btn-sm ms-2">Delete</button>
+                                        <Link to={`/admin/update/${singleProduct._id}`} className="btn btn-primary btn-sm">Edit</Link>
+                                        <button onClick={() => handleDelete(singleProduct._id)} to={`/admin/update/${singleProduct._id}`} className="btn btn-danger btn-sm ms-2">Delete</button>
                                     </td>
                                 </tr>
                             ))
@@ -192,3 +211,10 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+
+//edit product
+//admin dashboard (table) product
+//make a router (admin edit product)
+//fill all the related information only
+//edit garna milnu paryo (text, file, etc)
+//make a backedn to update product
