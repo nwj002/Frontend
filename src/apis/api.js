@@ -31,3 +31,5 @@ export const getSingleProduct = (id) => api.get(`/api/product/get_single_product
 //delete product
 export const deleteProduct = (id) => api.delete(`/api/product/delete_product/${id}`)
 
+//update product 
+export const updateProduct = (id, data) => api.put(`/api/product/update_product/${id}`, data)
