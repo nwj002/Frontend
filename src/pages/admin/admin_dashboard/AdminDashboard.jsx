@@ -74,12 +74,12 @@ const AdminDashboard = () => {
         if (confirmDialog) {
             //calling api
             deleteProduct(_id).then((res) => {
-                if (res.status == 201) {
+                if (res.status === 201) {
                     toast.success(res.data.message)
                     window.location.reload()
                 }
             }).catch((error) => {
-                if (error.response.status == 500) {
+                if (error.response.status === 500) {
                     toast.error(error.response.data.message)
                 }
             })
@@ -122,6 +122,7 @@ const AdminDashboard = () => {
                                 ></button>
                             </div>
                             <div className="modal-body">
+                                {/* // adding new product */}
                                 <form action=''>
                                     <label className='mt-2'> Product name</label>
                                     <input onChange={(e) => setProductName(e.target.value)} type="text" className="form-control" placeholder="Enter product name" />
@@ -152,6 +153,7 @@ const AdminDashboard = () => {
                                     }
                                 </form>
                             </div>
+                            {/* button for add procust */}
                             <div className="modal-footer">
                                 <button
                                     type="button"
@@ -194,7 +196,7 @@ const AdminDashboard = () => {
                                     <td>{singleProduct.productName}</td>
                                     <td>{singleProduct.productPrice}</td>
                                     <td>{singleProduct.productDescription}</td>
-                                    <td>{singleProduct.productDescription}</td>
+                                    <td>{singleProduct.productCategory}</td>
                                     <td>
                                         <Link to={`/admin/update/${singleProduct._id}`} className="btn btn-primary btn-sm">Edit</Link>
                                         <button onClick={() => handleDelete(singleProduct._id)} to={`/admin/update/${singleProduct._id}`} className="btn btn-danger btn-sm ms-2">Delete</button>

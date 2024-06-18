@@ -52,7 +52,11 @@ const UpdateProduct = () => {
         formData.append('productPrice', productPrice)
         formData.append('productCategory', productCategory)
         formData.append('productDescription', productDescription)
-        formData.append('productImage', productNewImage)
+        // formData.append('productImage', productNewImage)
+
+        if (productNewImage) {
+            formData.append('productImage', productNewImage)
+        }
 
         //api calling 
         updateProduct(id, formData).then((res) => {
@@ -60,7 +64,11 @@ const UpdateProduct = () => {
                 toast.success(res.data.message)
             }
         }).catch((error) => {
+
             if (error.response.status === 500) {
+                toast.error(error.response.data.message)
+            }
+            else if (error.response.status === 400) {
                 toast.error(error.response.data.message)
             }
         })

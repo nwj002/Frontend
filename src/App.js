@@ -11,7 +11,11 @@ import AdminDashboard from "./pages/admin/admin_dashboard/AdminDashboard";
 import UpdateProduct from "./pages/admin/update_product/UpdateProduct";
 import Homepage from './pages/homepage/Homepage';
 import Login from './pages/login/Login';
+import Profile from "./pages/profile/Profile";
 import Register from './pages/register/Register';
+import Stopwatch from "./pages/stopwatch/Stopwatch";
+import AdminRoutes from "./protected_routes/AdminRoutes";
+import UserRoutes from "./protected_routes/UserRoutes";
 
 function App() {
   return (
@@ -24,9 +28,19 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
 
+        <Route path='/stopwatch' element={<Stopwatch />} />
+
         {/* admin routes */}
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/update/:id" element={<UpdateProduct />} />
+        <Route element={<AdminRoutes />}>
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/update/:id" element={<UpdateProduct />} />
+        </Route>
+
+
+        {/* user routes */}
+        <Route element={<UserRoutes />}>
+          <Route path="/Profile" element={<Profile />} />
+        </Route>
       </Routes>
     </Router>
   );
