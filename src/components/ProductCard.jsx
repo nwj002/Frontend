@@ -5,7 +5,7 @@ const ProductCard = ({ productInformation, color }) => {
         <>
             <div class="card" style={{ width: '18rem' }}>
 
-                <span style={{ backgroundColor: color }} className='badge  position-absolute top-0'>{productInformation.productCategory}</span>
+                <span style={{ backgroundColor: color }} className='badge position-absolute top-0'>{productInformation.productCategory}</span>
                 <img src={`http://localhost:5000/products/${productInformation.productImage}`} class="card-img-top"
                     alt="..." />
                 <div class="card-body">

@@ -9,6 +9,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import AdminDashboard from "./pages/admin/admin_dashboard/AdminDashboard";
 import UpdateProduct from "./pages/admin/update_product/UpdateProduct";
+import ForgetPassword from "./pages/forget_password/ForgetPassword";
 import Homepage from './pages/homepage/Homepage';
 import Login from './pages/login/Login';
 import Profile from "./pages/profile/Profile";
@@ -27,6 +28,7 @@ function App() {
         <Route path='/' element={<Homepage />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/forget_password' element={<ForgetPassword />} />
 
         <Route path='/stopwatch' element={<Stopwatch />} />
 

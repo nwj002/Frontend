@@ -10,6 +10,7 @@ const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmpassword, setConfirmPassword] = useState('')
+    const [phone, setPhone] = useState('') // [value, function
 
     //use state for error message
     const [firstNameError, setFirstNameError] = useState('')
@@ -17,6 +18,7 @@ const Register = () => {
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
     const [confirmpasswordError, setConfirmPasswordError] = useState('')
+    const [phoneError, setPhoneError] = useState('')
 
 
     // make a each function for changing the value
@@ -35,6 +37,9 @@ const Register = () => {
     const handleComfirmPassword = (e) => {
         setConfirmPassword(e.target.value);
     }
+    const handlePhone = (e) => {
+        setPhone(e.target.value);
+    }
 
     //validation
     var validate = () => {
@@ -50,6 +55,10 @@ const Register = () => {
         }
         if (email.trim() === '') {
             setEmailError('First Name is required');
+            isValid = false;
+        }
+        if (phone.trim() === '') {
+            setPhoneError('phone number is required');
             isValid = false;
         }
         if (password.trim() === '') {
@@ -82,7 +91,8 @@ const Register = () => {
             "firstName": firstName,
             "lastName": lastName,
             "email": email,
-            "password": password
+            "password": password,
+            "phone": phone
         }
 
         registerUserApi(data).then((res) => {
@@ -112,6 +122,10 @@ const Register = () => {
                     <label className="mt-2">email :{email}</label>
                     <input onChange={handleEmail} type="text" className="form-control" placeholder="enter your email" />
                     {emailError && <p className="text-danger">{emailError}</p>}
+
+                    <label className="mt-2">Phone :{phone}</label>
+                    <input onChange={handlePhone} type="text" className="form-control" placeholder="enter your phone" />
+                    {phoneError && <p className="text-danger">{phoneError}</p>}
 
                     <label className="mt-2">Password :{password}</label>
                     <input onChange={handlePassword} type="text" className="form-control" placeholder="enter your password" />

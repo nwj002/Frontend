@@ -43,3 +43,9 @@ export const deleteProduct = (id) => api.delete(`/api/product/delete_product/${i
 
 //update product 
 export const updateProduct = (id, data) => api.put(`/api/product/update_product/${id}`, data, config)
+
+//forget password
+export const forgetPasswordApi= (data) => api.post('/api/user/forget_password', data)
+
+//verify otp
+export const verifyOtpApi = (data) => api.post('/api/user/verify_otp', data)
