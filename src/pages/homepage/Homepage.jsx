@@ -21,12 +21,12 @@ const Homepage = () => {
         <>
             <div className="container mt-3">
                 <div id="carouselExampleCaptions" class="carousel slide">
-                    <div class="carousel-indicators">
+                    <div className="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    <div class="carousel-inner">
+                    <div className="carousel-inner">
                         <div class="carousel-item active">
                             <img src="https://images.unsplash.com/photo-1718553964968-78e8b53dd062?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="..." />
                             <div class="carousel-caption d-none d-md-block">
@@ -49,17 +49,17 @@ const Homepage = () => {
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
                 <h2 className="mt-2">Available Products</h2>
-                <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div className="row row-cols-1 row-cols-md-4 g-4">
                     {
                         products.map((singleProduct) => (
                             <div class="col">

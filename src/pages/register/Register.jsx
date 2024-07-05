@@ -135,7 +135,7 @@ const Register = () => {
                     <input onChange={handleComfirmPassword} type="text" className="form-control" placeholder="enter your comfirm password" />
                     {confirmpasswordError && <p className="text-danger">{confirmpasswordError}</p>}
 
-                    <button onClick={handleSubmit} className="btn btn-dark mt-3 w-100">create an account</button>
+                    <button onClick={handleSubmit} className="btn btn-dark mt-3 w-100">registerBtn</button>
                 </form>
 
             </div>

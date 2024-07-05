@@ -2,7 +2,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { toast } from 'react-toastify';
 import { loginUserApi } from '../../apis/api';
-import Login from './login'; //componrnts to be tested
+import Login from './Login'; //componrnts to be tested
 
 // mock API js(no sending request to real backend)
 jest.mock('../../apis/api')
